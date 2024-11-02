@@ -4,6 +4,8 @@ const express = require('express');
 const dotenv = require('dotenv');
 const authRoutes = require('./routes/authRoute');
 const userRoutes = require('./routes/userRoutes');
+const serviceRoutes = require('./routes/serviceRoutes');
+
 const {authorizeAdmin} = require('./middlewares/authMiddleware');
 
 dotenv.config();
@@ -14,7 +16,7 @@ app.use(express.json());
 
 // Routes
 app.use('/api/v1', authRoutes);
-
+app.use('/api/v1', serviceRoutes);
 
 // Example protected route for admin users only
 app.get('/api/admin', authorizeAdmin, (req, res) => {
