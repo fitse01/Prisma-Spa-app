@@ -5,8 +5,10 @@ const dotenv = require('dotenv');
 const authRoutes = require('./routes/authRoute');
 const userRoutes = require('./routes/userRoutes');
 const serviceRoutes = require('./routes/serviceRoutes');
+const appointmentRoutes = require('./routes/appointmentRoutes');
+const errorMiddleware = require('./middlewares/errorMiddleware');
 
-const {authorizeAdmin} = require('./middlewares/authMiddleware');
+const { authorizeAdmin } = require('./middlewares/authMiddleware');
 
 dotenv.config();
 const app = express();
@@ -16,7 +18,9 @@ app.use(express.json());
 
 // Routes
 app.use('/api/v1', authRoutes);
-app.use('/api/v1', serviceRoutes);
+app.use('/api/v1/services', serviceRoutes);
+app.use('/api/v1/appointments', appointmentRoutes); // Corrected route prefix
+
 
 // Example protected route for admin users only
 app.get('/api/admin', authorizeAdmin, (req, res) => {
@@ -24,7 +28,7 @@ app.get('/api/admin', authorizeAdmin, (req, res) => {
 });
 
 
-// Error handling middleware
+// Error handling middleware  
 app.use((err, req, res, next) => {
   res.status(err.status || 500).json({ error: err.message || 'Internal Server Error' });
 });

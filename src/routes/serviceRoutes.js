@@ -6,7 +6,7 @@ const { getAllServices, getServiceById, createService, updateService, deleteServ
 router.get('/', getAllServices);
 router.get('/:id', getServiceById);
 // Define the POST route with multer middleware
-router.post('/services', upload.single('image'), createService);
+router.post('/', upload.single('image'), createService);
 // router.post('/', createService);
 router.put('/:id', updateService);
 router.delete('/:id', deleteService);

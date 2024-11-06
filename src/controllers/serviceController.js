@@ -5,13 +5,15 @@ const fs = require('fs');
 
 // Get all services
 const getAllServices = async (req, res) => {
-  try {
-    const services = await prisma.service.findMany();
-    res.json(services);
-  } catch (error) {
-    res.status(500).json({ error: 'Error fetching services' });
-  }
-};
+    try {
+      const services = await prisma.service.findMany();
+      res.json(services);
+    } catch (error) {
+      console.error("Error fetching services:", error); // Log error details
+      res.status(500).json({ error: 'Error fetching services' });
+    }
+  };
+  
 
 // Get a specific service by ID
 const getServiceById = async (req, res) => {
@@ -54,33 +56,7 @@ const createService = async (req, res) => {
         res.status(500).json({ error: "Error creating service" });
     }
 };
-// Example in serviceController.js
-// const createService = async (req, res) => {
-//     try {
-//         const { title, tag, image_url, description, is_active } = req.body;
 
-//         // Check if all required fields are present
-//         if (!title || !tag || !image_url || !description) {
-//             return res.status(400).json({ error: "All fields are required" });
-//         }
-
-//         // Create service using Prisma
-//         const service = await prisma.service.create({
-//             data: {
-//                 title,
-//                 tag,
-//                 image_url,
-//                 description,
-//                 is_active: is_active ?? true // Default to true if not provided
-//             },
-//         });
-        
-//         return res.status(201).json(service);
-//     } catch (error) {
-//         console.error("Error creating service:", error); // Log error details
-//         return res.status(500).json({ error: "Error creating service" });
-//     }
-// };
 
 // Update an existing service
 const updateService = async (req, res) => {
