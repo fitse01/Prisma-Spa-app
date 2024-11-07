@@ -6,6 +6,9 @@ const authRoutes = require('./routes/authRoute');
 const userRoutes = require('./routes/userRoutes');
 const serviceRoutes = require('./routes/serviceRoutes');
 const appointmentRoutes = require('./routes/appointmentRoutes');
+const employeeRoutes = require('./routes/employeeRoutes')
+const testimonialRoutes = require('./routes/testimonialRoutes')
+const contactRoutes =require('./routes/contactRoutes')
 const errorMiddleware = require('./middlewares/errorMiddleware');
 
 const { authorizeAdmin } = require('./middlewares/authMiddleware');
@@ -20,7 +23,9 @@ app.use(express.json());
 app.use('/api/v1', authRoutes);
 app.use('/api/v1/services', serviceRoutes);
 app.use('/api/v1/appointments', appointmentRoutes); // Corrected route prefix
-
+app.use('/api/v1/employees',employeeRoutes)
+app.use('/api/v1/testimonials',testimonialRoutes)
+app.use('/api/v1/contact',contactRoutes)
 
 // Example protected route for admin users only
 app.get('/api/admin', authorizeAdmin, (req, res) => {

@@ -7,6 +7,16 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model user {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique(map: "User_email_key")
+  name      String?
+  age       Int
+  createdAt DateTime @default(now())
+  password  String
+  role      String
+}
+
 model service {
   id          Int      @id @default(autoincrement())
   title       String   @db.VarChar(255)
@@ -17,6 +27,7 @@ model service {
   updatedAt   DateTime
   isActive    Boolean  @default(true)
 }
+
 model Appointment {
   id                 Int      @id @default(autoincrement())
   full_name          String   @db.VarChar(100)
@@ -44,12 +55,62 @@ enum AppointmentStatus {
 }
 
 
-model user {
+
+model Employee {
+  id                Int       @id @default(autoincrement())
+  full_name         String    @db.VarChar(255)
+  email             String    @unique @db.VarChar(255)
+  image_url         String?   @db.Text
+  phone_no          String    @db.VarChar(20)
+  position          String    @db.VarChar(100)
+  experience_years  Int
+  personal_info     String?   @db.Text
+  skills            Json
+  employment_status EmploymentStatus
+  role              Role      @default(ordinary)
+  social_media      Json
+  created_at        DateTime  @default(now())
+  updated_at        DateTime  @updatedAt
+}
+
+enum EmploymentStatus {
+  Active
+  OnLeave
+  Terminated
+}
+
+enum Role {
+  Admin
+  Stylist
+  Manager
+  Receptionist
+  ordinary
+}
+
+
+
+model Testimonial {
   id        Int      @id @default(autoincrement())
-  email     String   @unique(map: "User_email_key")
-  name      String?
-  age       Int
-  createdAt DateTime @default(now())
-  password  String
-  role      String
+  full_name String   @db.VarChar(255)
+  image_url String   @db.VarChar(255)
+  rating    Int      @db.Int
+  message   String   @db.Text
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  status    String   @default("pending")
+  priority  Int?
+}
+
+
+model Contact {
+  id               Int      @id @default(autoincrement())
+  email            Json
+  location         Json
+  phone            Json?
+  workingDays      Json?
+  facebookUrl      String?
+  instagramUrl     String?
+  website          String?
+  emergencyContact String?
+  updated_at       DateTime @updatedAt
 }
