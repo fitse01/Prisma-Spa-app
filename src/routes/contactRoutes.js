@@ -9,10 +9,10 @@ const {
   deleteContact,
 } = require("../controllers/contactController");
 
-router.post("/", createContact);            // Create new contact information
-router.get("/", getAllContacts);            // Get all contact information
-router.get("/:id", getContactById);         // Get contact by ID
-router.put("/:id", updateContact);          // Update contact information by ID
-router.delete("/:id", deleteContact);       // Delete contact by ID
+router.post("/create-contact", createContact);            // Create new contact information
+router.get("/get-contact", getAllContacts);            // Get all contact information
+router.get("/get-contact/:id", getContactById);         // Get contact by ID
+router.put("/update-contact/:id", updateContact);          // Update contact information by ID
+router.delete("/delete-contact/:id", deleteContact);       // Delete contact by ID
 
 module.exports = router;

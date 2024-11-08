@@ -114,3 +114,60 @@ model Contact {
   emergencyContact String?
   updated_at       DateTime @updatedAt
 }
+
+
+model ContactMessage {
+  id          Int      @id @default(autoincrement())
+  message     String   @db.Text
+  fullname    String   @db.VarChar(255)
+  email       String   @db.VarChar(255)
+  phoneNo     String?  @db.VarChar(20)
+  subject     String   @db.VarChar(255)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  status      String   @default("PENDING")
+  response    String?  @db.Text
+  respondedAt DateTime?
+
+  @@map("ContactMessage")
+}
+
+
+
+model FAQ {
+    id         Int      @id @default(autoincrement())
+    question   String
+    answer     String
+    createdAt  DateTime @default(now())
+    updatedAt  DateTime @updatedAt
+    category   String?
+    order      Int?
+    status     String   @default("ACTIVE")
+}
+
+
+
+
+model CountAnimation {
+  id               Int      @id @default(autoincrement())
+  number           Int
+  title            String
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  animationDuration Int?
+  animationType    String?
+  status           String   @default("ACTIVE")
+}
+
+
+model Video {
+  id          Int      @id @default(autoincrement())
+  title       String   @db.VarChar(255)
+  link        String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  thumbnail   String?  @db.VarChar(255)
+  description String?
+  duration    Int?
+  status      String   @default("ACTIVE")
+}

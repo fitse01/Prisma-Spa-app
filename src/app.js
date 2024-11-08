@@ -9,6 +9,10 @@ const appointmentRoutes = require('./routes/appointmentRoutes');
 const employeeRoutes = require('./routes/employeeRoutes')
 const testimonialRoutes = require('./routes/testimonialRoutes')
 const contactRoutes =require('./routes/contactRoutes')
+const contactMessageRoutes = require('./routes/contactMessageRoutes')
+const faqRoutes = require('./routes/faqRoutes')
+const countAnimationRoutes = require('./routes/countAnimationRoutes')
+const videoRoutes = require('./routes/videoRoutes')
 const errorMiddleware = require('./middlewares/errorMiddleware');
 
 const { authorizeAdmin } = require('./middlewares/authMiddleware');
@@ -26,7 +30,10 @@ app.use('/api/v1/appointments', appointmentRoutes); // Corrected route prefix
 app.use('/api/v1/employees',employeeRoutes)
 app.use('/api/v1/testimonials',testimonialRoutes)
 app.use('/api/v1/contact',contactRoutes)
-
+app.use('/api/v1/contact-message',contactMessageRoutes)
+app.use('/api/v1/faq',faqRoutes)
+app.use('/api/v1/countAnimation',countAnimationRoutes)
+app.use('/api/v1/video',videoRoutes)
 // Example protected route for admin users only
 app.get('/api/admin', authorizeAdmin, (req, res) => {
   res.send('Welcome Admin!');
