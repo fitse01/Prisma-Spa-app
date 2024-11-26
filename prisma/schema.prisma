@@ -171,3 +171,18 @@ model Video {
   duration    Int?
   status      String   @default("ACTIVE")
 }
+
+
+model Blog {
+  id          Int      @id @default(autoincrement())
+  image       String
+  title       String
+  tag         String?
+  description String
+  date        DateTime @default(now())
+  author      String
+  status      String   @default("DRAFT")
+  deleted     Boolean  @default(false)
+  updatedAt   DateTime @updatedAt
+}
+
