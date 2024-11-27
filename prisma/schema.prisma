@@ -186,3 +186,15 @@ model Blog {
   updatedAt   DateTime @updatedAt
 }
 
+
+
+
+model Pricing {
+  id          Int      @id @default(autoincrement())
+  image       String
+  title       String   @db.VarChar(100)
+  description String?
+  price       Decimal  @db.Decimal(10, 2)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

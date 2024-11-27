@@ -14,6 +14,7 @@ const faqRoutes = require('./routes/faqRoutes')
 const countAnimationRoutes = require('./routes/countAnimationRoutes')
 const videoRoutes = require('./routes/videoRoutes')
 const blogRoutes = require('./routes/blogRoutes');
+const pricingRoutes = require('./routes/pricingRoutes');
 const errorMiddleware = require('./middlewares/errorMiddleware');
 
 const { authorizeAdmin } = require('./middlewares/authMiddleware');
@@ -36,6 +37,7 @@ app.use('/api/v1/faq',faqRoutes)
 app.use('/api/v1/countAnimation',countAnimationRoutes)
 app.use('/api/v1/video',videoRoutes)
 app.use('/api/v1/blog', blogRoutes);
+app.use('/api/v1/price', pricingRoutes);
 // Example protected route for admin users only
 app.get('/api/admin', authorizeAdmin, (req, res) => {
   res.send('Welcome Admin!');
