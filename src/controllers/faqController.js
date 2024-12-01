@@ -1,6 +1,6 @@
 const prisma = require('../config/prismaClient');
 
-// Create FAQ
+// Create FAQ controller
 
 const createFAQ = async (req, res) => {
     try {
