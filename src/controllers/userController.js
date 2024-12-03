@@ -14,6 +14,7 @@ const getAllUsers = async (req, res) => {
 };
 
 // Create a new user
+// for authentication purpose
 const createUser = async (req, res) => {
   const { email, name } = req.body;
 
